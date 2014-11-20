@@ -5,7 +5,7 @@ import play.api.mvc._
 /**
  * Minimal controller examples that output text/plain responses.
  */
-object Application extends Controller {
+object HelloWorld extends Controller {
 
   def index = Action {
     Ok("Hello world")

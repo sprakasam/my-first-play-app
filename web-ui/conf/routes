@@ -1,4 +1,0 @@
-GET /           com.suresh.HelloWorld.Application.index()
-
-GET /hello/:n   com.suresh.HelloWorld.Application.hello(n: String)
-
