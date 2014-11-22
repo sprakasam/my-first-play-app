@@ -1,4 +1,0 @@
-GET /           com.suresh.controllers.HelloWorld.index()
-
-GET /hello/:n   com.suresh.controllers.HelloWorld.hello(n: String)
-

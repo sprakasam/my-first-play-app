@@ -1,2 +1,3 @@
+GET /index                  controllers.Application.index()
 
-->  /web-ui webui.routes
+GET /stations               controllers.Main.index()
