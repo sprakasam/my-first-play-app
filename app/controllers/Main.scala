@@ -19,12 +19,8 @@ object Main extends Controller {
   val apiKey = "Q5LK-UWD2-IABQ-DT35"
   implicit val formats = DefaultFormats
 
-  def index = Action {
-    Ok(views.html.Main.index())
-  }
-
   // returns the station names in Json format
-  def stations = Action.async {
+  def stationNames = Action.async {
 
     WS.url(apiUrl.format("stn.aspx"))
       .withQueryString("key" -> apiKey)

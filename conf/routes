@@ -1,6 +1,6 @@
-GET /index      controllers.Main.index()
+GET /index          controllers.Assets.at(path="/public", file= "index.html")
 
-GET /stations   controllers.Main.stations()
+GET /stationNames   controllers.Main.stationNames()
 
 # Map static resources from the /public folder to the /assets URL path
-GET /*file      controllers.Assets.versioned(path="/public", file: Asset)
+GET /*file      controllers.Assets.at(path="/public", file)
