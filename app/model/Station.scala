@@ -1,9 +1,9 @@
 package model
 
 
-case class StationsResponse(root: UriAndStation, message: String)
-
-case class UriAndStation(uri: String, stations: List[Station])
+case class StationsResponse(root: Root)
+case class Root(uri: String, stations: Stations, message: String)
+case class Stations(station: List[Station])
 
 /**
  * Station data model

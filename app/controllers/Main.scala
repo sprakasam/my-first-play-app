@@ -3,7 +3,7 @@ package controllers
 import model.StationsResponse
 import org.json4s.DefaultFormats
 import org.json4s.Xml.toJson
-import org.json4s.jackson.JsonMethods._
+import org.json4s.jackson.Serialization.write
 import play.api.Play.current
 import play.api.libs.ws.WS
 import play.api.mvc._
@@ -19,7 +19,12 @@ object Main extends Controller {
   val apiKey = "Q5LK-UWD2-IABQ-DT35"
   implicit val formats = DefaultFormats
 
-  def index = Action.async {
+  def index = Action {
+    Ok(views.html.Main.index())
+  }
+
+  // returns the station names in Json format
+  def stations = Action.async {
 
     WS.url(apiUrl.format("stn.aspx"))
       .withQueryString("key" -> apiKey)
@@ -27,9 +32,13 @@ object Main extends Controller {
       .get()
       .map { response =>
       val json = toJson(scala.xml.XML.loadString(response.body))
-      println(pretty(json))
-      val stations = json.extract[StationsResponse].root.stations
-      Ok(stations.map(_.name).mkString("/n"))
+      val stationResponse = json.extract[StationsResponse]
+
+      val stations = stationResponse.root.stations.station
+      val stationNames = stations.map(_.name)
+
+      val jsonResponse = write(stationNames)
+      Ok(jsonResponse)
     }
   }
 }
